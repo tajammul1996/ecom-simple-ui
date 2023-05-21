@@ -2,7 +2,7 @@
 const nextConfig = {
     images: {
         // allow all domains
-        domains: ["*"],
+        domains: ["img5a.flixcart.com"],
     },
     redirects: async () => {
         return [
