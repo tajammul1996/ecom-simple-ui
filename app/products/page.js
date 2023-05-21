@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 
 
 export default async function Products() {
-  const response = await fetch("https://access-ecom-apis.onrender.com/api/products");
+  const response = await fetch("http://64.225.87.22/api/products");
   console.log(response)
   const data = await response.json()
   const products = data.data;

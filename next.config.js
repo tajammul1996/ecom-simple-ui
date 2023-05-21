@@ -4,15 +4,16 @@ const nextConfig = {
         // allow all domains
         domains: ["*"],
     },
-    // redirects: async () => {
-    //     return [
-    //         {
-    //             source: "/",
-    //             destination: "/products",
-    //             permanent: true
-    //         }
-    //     ]
-    // }
+    redirects: async () => {
+        return [
+            {
+                source: "/",
+                destination: "/products",
+                permanent: true
+            }
+        ]
+    }
 }
 
 module.exports = nextConfig
+

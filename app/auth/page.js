@@ -6,8 +6,8 @@ import styles from "./page.module.css";
 
 
 
-const BASE_URL = "https://access-ecom-apis.onrender.com";
-
+// const BASE_URL = "https://access-ecom-apis.onrender.com";
+const BASE_URL = "http://64.225.87.22";
 export default function Auth() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
