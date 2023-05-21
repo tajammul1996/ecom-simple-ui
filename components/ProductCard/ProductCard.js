@@ -1,14 +1,18 @@
 "use client"
 import React from "react";
 import styles from "./styles.module.css";
+import Image from "next/image";
+
 
 const ProductCard = ({ product }) => {
   return (
     <div className={styles.productCard}>
-      <img
+      <Image
         src={product.images[0]}
         className={styles.productImage}
         alt={product.name}
+        width={200}
+        height={200}
       />
 
       <h4 className={styles.productName}>{product.name}</h4>
