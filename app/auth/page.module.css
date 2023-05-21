@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.image {
+    width: 70%;
+    background-image: url('https://images.unsplash.com/photo-1617909517211-c4e4275bf5b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    /* Replace with your background image */
+    background-size: cover;
+}
+
+.form {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.formTitle {
+    /* font-size: 24px; */
+    margin-bottom: 24px;
+    color: #716d6d;
+}
+
+.formInput {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formButton {
+    padding: 12px 24px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.toggleForm {
+    font-size: 14px;
+    color: #888;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.welcomeMessage {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: #535151;
+}
