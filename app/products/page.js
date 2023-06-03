@@ -8,6 +8,8 @@ export default async function Products() {
   const data = await response.json()
   const products = data.data;
 
+  console.log(products[0])
+
  
   return (
     <div className={styles.productsPage}>

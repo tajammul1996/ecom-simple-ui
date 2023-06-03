@@ -3,12 +3,14 @@ import { useState } from "react";
 import {useRouter} from "next/navigation"
 
 import styles from "./page.module.css";
+import useAuth from "@/hooks/useAuth";
 
 
 
 // const BASE_URL = "https://access-ecom-apis.onrender.com";
 const BASE_URL = "http://64.225.87.22";
 export default function Auth() {
+  const { setToken } = useAuth()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,6 +56,8 @@ export default function Auth() {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        localStorage.setItem("token", data.token)
+        setToken(data.token)
         router.push("/products")
 
       }
