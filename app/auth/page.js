@@ -1,12 +1,10 @@
-"use client"
+"use client";
 import { useState } from "react";
-import {useRouter} from "next/navigation"
-import { BASE_URL } from "../../helpers/constants"
+import { useRouter } from "next/navigation";
+import { BASE_URL } from "../../helpers/constants";
 import styles from "./page.module.css";
 
 // import useAuth from "@/hooks/useAuth";
-
-
 
 // const BASE_URL = "https://access-ecom-apis.onrender.com";
 export default function Auth() {
@@ -15,15 +13,14 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(true);
-  const router = useRouter()
-
+  const router = useRouter();
 
   async function signup() {
     try {
       const response = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: email,
@@ -33,8 +30,7 @@ export default function Auth() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        router.push("/products")
+        router.push("/products");
       }
     } catch (e) {
       console.log(e);
@@ -46,7 +42,7 @@ export default function Auth() {
       const response = await fetch(`${BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: email,
@@ -55,11 +51,9 @@ export default function Auth() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        localStorage.setItem("token", data.token)
+        localStorage.setItem("token", data.token);
         // setToken(data.token)
-        router.push("/products")
-
+        router.push("/products");
       }
     } catch (e) {
       console.log(e);
@@ -117,9 +111,7 @@ export default function Auth() {
           {isSignup ? "Sign me up!" : "Log in"}
         </button>
         <p className={styles.toggleForm} onClick={toggleForm}>
-          {isSignup
-            ? "Already have an account? Log in"
-            : "Don't have an account? Register"}
+          {isSignup ? "Already have an account? Log in" : "Don't have an account? Register"}
         </p>
       </form>
       <div className={styles.image}></div>

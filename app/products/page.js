@@ -1,17 +1,12 @@
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { BASE_URL } from "../../helpers/constants"
+import { BASE_URL } from "../../helpers/constants";
 import styles from "./page.module.css";
-
 
 export default async function Products() {
   const response = await fetch(`${BASE_URL}/api/products`);
-  console.log(response)
-  const data = await response.json()
+  const data = await response.json();
   const products = data.data;
 
-  console.log(products[0])
-
- 
   return (
     <div className={styles.productsPage}>
       <h1>Product Catalog</h1>
@@ -24,7 +19,6 @@ export default async function Products() {
   );
 }
 
-
-// React server components 
-  // Pros - less code, fast, cache, bundle size, 
-  //  Cons - can't handle user interaction, no client side logic
+// React server components
+// Pros - less code, fast, cache, bundle size,
+//  Cons - can't handle user interaction, no client side logic

@@ -5,8 +5,6 @@ import { ToastContainer, toast } from "react-toastify";
 import styles from "./styles.module.css";
 
 const CartItem = ({ item, fetchCartItems }) => {
-  console.log("Cart item", item);
-
   const onRemoveItem = async (id) => {
     try {
       const token = localStorage.getItem("token");
@@ -19,11 +17,8 @@ const CartItem = ({ item, fetchCartItems }) => {
       });
 
       const responseJson = await response.json();
-
       fetchCartItems();
-
       toast("Item removed from the cart!");
-      console.log(responseJson);
     } catch (e) {
       console.log(e);
     }
@@ -48,7 +43,7 @@ const CartItem = ({ item, fetchCartItems }) => {
       fetchCartItems();
 
       // toast("Item removed from the cart!");
-      console.log(responseJson);
+      // console.log(responseJson);
     } catch (e) {
       console.log(e);
     }
