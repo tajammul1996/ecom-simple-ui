@@ -1,19 +1,18 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { BASE_URL } from "../../helpers/constants";
 import styles from "./page.module.css";
+import { AuthContext } from "../../contexts/AuthContext";
 
-// import useAuth from "@/hooks/useAuth";
-
-// const BASE_URL = "https://access-ecom-apis.onrender.com";
 export default function Auth() {
-  // const { setToken } = useAuth()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(true);
   const router = useRouter();
+
+  const { setToken } = useContext(AuthContext);
 
   async function signup() {
     try {
@@ -52,7 +51,7 @@ export default function Auth() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        // setToken(data.token)
+        setToken(data.token);
         router.push("/products");
       }
     } catch (e) {

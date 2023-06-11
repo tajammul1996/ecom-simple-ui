@@ -1,39 +1,44 @@
 "use client";
-import React from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 import Link from "next/link";
-import useAuth from "@/hooks/useAuth";
+import React, { useContext } from "react";
+import styles from "./headerstyles.module.css";
 
 const Header = () => {
-  const { isAuthenticated, setToken } = useAuth();
+  const { setToken, token } = useContext(AuthContext);
 
   const logout = () => {
     localStorage.removeItem("token");
     setToken(null);
   };
-
-  const renderNavigationLinks = () => {
-    if (isAuthenticated) {
-      return (
-        <nav>
-          <Link href="/">Home</Link>
-          <Link href="/orders">Orders</Link>
-          <Link href="/cart">Cart</Link>
-          <Link href="/auth" onClick={logout}>
-            Logout
-          </Link>
-        </nav>
-      );
-    }
-
-    return (
+  return (
+    <header className={styles.header}>
       <nav>
-        <Link href="/">Home</Link>
-        <Link href="/auth">Login / Signup</Link>
-      </nav>
-    );
-  };
+        <ul>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
 
-  return <header>{renderNavigationLinks()}</header>;
+          {token && (
+            <>
+              <li>
+                <Link href="/cart">Cart</Link>
+              </li>
+              <li>
+                <Link href="/orders">Orders</Link>
+              </li>
+            </>
+          )}
+
+          <li>
+            <Link href="/auth" onClick={logout}>
+              {token ? "Logout" : "Login"}
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
 };
 
 export default Header;
