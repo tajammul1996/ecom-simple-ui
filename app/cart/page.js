@@ -3,12 +3,16 @@
 import CartItem from "@/components/CartItem/CartItem";
 
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { BASE_URL } from "../../helpers/constants";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [error, setError] = useState("");
+  const data = useContext(AuthContext);
+
+  console.log(data);
 
   const fetchCartItems = async () => {
     try {
@@ -40,19 +44,23 @@ export default function Cart() {
       total = total + item.quantity * item.product.price;
     });
 
-    return total;
+    return total.toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
+    });
   };
 
   return (
     <div className={styles.cart}>
       {cartItems.length > 0 ? (
-        <div>
-          <h1>Cart</h1>
-          {cartItems.map((item) => (
-            <CartItem item={item} key={item.id} fetchCartItems={fetchCartItems} />
-          ))}
-          <div>Total amount: {getTotalAmount()}</div>
-        </div>
+        <>
+          <div className={styles.cartItems}>
+            {cartItems.map((item) => (
+              <CartItem item={item} key={item.id} fetchCartItems={fetchCartItems} />
+            ))}
+          </div>
+          <div className={styles.totalAmount}>Total amount: {getTotalAmount()}</div>
+        </>
       ) : (
         <h2>Cart is empty</h2>
       )}

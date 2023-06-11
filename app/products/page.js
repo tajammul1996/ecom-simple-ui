@@ -3,7 +3,7 @@ import { BASE_URL } from "../../helpers/constants";
 import styles from "./page.module.css";
 
 export default async function Products() {
-  const response = await fetch(`${BASE_URL}/api/products`);
+  const response = await fetch(`${BASE_URL}/api/products?limit=100`);
   const data = await response.json();
   const products = data.data;
 

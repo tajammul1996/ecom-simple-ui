@@ -1,11 +1,14 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import { BASE_URL } from "../../helpers/constants";
 import { ToastContainer, toast } from "react-toastify";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const ProductCard = ({ product }) => {
+  const data = useContext(AuthContext);
+  console.log(data);
   const addToCart = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -42,9 +45,11 @@ const ProductCard = ({ product }) => {
 
       <h4 className={styles.productName}>{product.name}</h4>
       <p className={styles.productPrice}>Rs. {product.price}</p>
-      <button className={styles.addToCart} onClick={addToCart}>
-        Add to cart
-      </button>
+      {data.isUserLoggedIn && (
+        <button className={styles.addToCart} onClick={addToCart}>
+          Add to cart
+        </button>
+      )}
 
       <ToastContainer />
     </div>
