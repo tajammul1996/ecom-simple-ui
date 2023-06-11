@@ -40,19 +40,23 @@ export default function Cart() {
       total = total + item.quantity * item.product.price;
     });
 
-    return total;
+    return total.toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
+    });
   };
 
   return (
     <div className={styles.cart}>
       {cartItems.length > 0 ? (
-        <div>
-          <h1>Cart</h1>
-          {cartItems.map((item) => (
-            <CartItem item={item} key={item.id} fetchCartItems={fetchCartItems} />
-          ))}
-          <div>Total amount: {getTotalAmount()}</div>
-        </div>
+        <>
+          <div className={styles.cartItems}>
+            {cartItems.map((item) => (
+              <CartItem item={item} key={item.id} fetchCartItems={fetchCartItems} />
+            ))}
+          </div>
+          <div className={styles.totalAmount}>Total amount: {getTotalAmount()}</div>
+        </>
       ) : (
         <h2>Cart is empty</h2>
       )}

@@ -50,24 +50,18 @@ const CartItem = ({ item, fetchCartItems }) => {
   };
 
   return (
-    <div className={styles.cartItem}>
-      <div className={styles.imageContainer}>
-        <img src={item.product.images[0]} alt={item.name} />
+    <div className={styles.cartitem}>
+      <img className={styles.itemimage} src={item.product.images[0]} alt={item.name} />
+      <h2 className={styles.itemname}>{item.product.name}</h2>
+      <p className={styles.itemdescription}>INR {item.product.price}</p>
+      <div className={styles.itemquantity}>
+        <button onClick={() => onQuantityUpdate(item.id, item.quantity - 1)}>-</button>
+        <span> {item.quantity} </span>
+        <button onClick={() => onQuantityUpdate(item.id, item.quantity + 1)}>+</button>
       </div>
-      <div className={styles.itemDetails}>
-        <span className={styles.name}>{item.product.name}</span>
-        <span className={styles.price}>Rs. {item.product.price}</span>
-        <span className={styles.description}>{item.product.description}</span>
-        <span>
-          Quantity -{" "}
-          <button onClick={() => onQuantityUpdate(item.id, item.quantity + 1)}>inc</button>
-          {item.quantity}
-          <button onClick={() => onQuantityUpdate(item.id, item.quantity - 1)}>dec</button>
-        </span>
-      </div>
-
-      <button onClick={() => onRemoveItem(item.id)}>❌</button>
-      <ToastContainer />
+      <button className={styles.itemremove} onClick={() => onRemoveItem(item.id)}>
+        Remove item
+      </button>
     </div>
   );
 };
